@@ -27,16 +27,15 @@ Remove-Item .\vmdevadmin-main -Force -Recurse -Verbose
 Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-choco.ps1 -OutFile .\install-choco.ps1; .\install-choco.ps1
 
 #Download and Unzip the vm setup file and run the script
-Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/cloudhostedvm-main.zip -OutFile .\cloudhostedvm-main.zip
-Expand-Archive .\cloudhostedvm-main.zip -DestinationPath .\ -Force -Verbose
+#Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/cloudhostedvm-main.zip -OutFile .\cloudhostedvm-main.zip
+#Expand-Archive .\cloudhostedvm-main.zip -DestinationPath .\ -Force -Verbose
 
 
-
-Remove-Item .\cloudhostedvm-main -Force -Recurse -Verbose
+#Remove-Item .\cloudhostedvm-main -Force -Recurse -Verbose
 
 # Remove the Zip file
-Remove-Item .\*.zip -Force -Recurse -Verbose
+#Remove-Item .\*.zip -Force -Recurse -Verbose
 
 # Remove this file
-Remove-Item .\install.ps1 -Force -Recurse -Verbose
-Remove-Item .\install-choco.ps1 -Force -Recurse -Verbose
+#Remove-Item .\install.ps1 -Force -Recurse -Verbose
+#Remove-Item .\install-choco.ps1 -Force -Recurse -Verbose

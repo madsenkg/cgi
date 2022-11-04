@@ -1,6 +1,6 @@
 ﻿#Requires -RunAsAdministrator
 
-cls;
+#Clear-Host;
 #Script version
 $Script:Version = '1.0.1';
 

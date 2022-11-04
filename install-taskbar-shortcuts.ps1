@@ -1,6 +1,6 @@
 ﻿#Requires -RunAsAdministrator
 #Source : https://stackoverflow.com/questions/59778951/pin-program-with-parameters-to-taskbar-using-ps-in-windows-10
-Clear-Host;
+#Clear-Host;
 Function New-PinnedItem {
     [CmdletBinding()]
     param (

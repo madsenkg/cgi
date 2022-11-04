@@ -23,14 +23,14 @@ Expand-Archive .\vmdevadmin-main.zip -DestinationPath .\ -Force -Verbose
 Copy-Item .\vmdevadmin-main\*.* -Destination $scriptFolder -Force -Verbose
 Remove-Item .\vmdevadmin-main -Force -Recurse -Verbose
 
+#Download scripts and execute them
 #Download and Install Chocolately programs
 Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-choco.ps1 -OutFile .\install-choco.ps1; .\install-choco.ps1
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-folders.ps1 -OutFile .\install-folders.ps1; .\install-folders.ps1
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-desktop-shortcuts.ps1 -OutFile .\install-desktop-shortcuts.ps1; .\install-desktop-shortcuts.ps1
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-taskbar-shortcuts.ps1 -OutFile .\install-taskbar-shortcuts.ps1; .\install-taskbar-shortcuts.ps1
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-setrunasadmin-shortcuts.ps1 -OutFile .\install-setrunasadmin-shortcuts.ps1; .\install-setrunasadmin-shortcuts.ps1
 
-#Download scripts and execute them
-Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Folder_OnVM.ps1')
-Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Shortcuts_OnDesktop.ps1')
-Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Shortcuts_OnTaskbar.ps1')
-Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Shortcuts_SetRunAsAdmin.ps1')
 
 # Remove the Zip file
 Remove-Item .\*.zip -Force -Recurse -Verbose

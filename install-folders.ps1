@@ -6,8 +6,7 @@ $Script:Version = '1.0.1';
 
 try {
    
-   Get-ChildItem -Path $env:USERPROFILE -Filter 'Documents\Visual Studio*' -Directory | ForEach {
-
+   Get-ChildItem -Path $env:USERPROFILE -Filter 'Documents\Visual Studio*' -Directory | ForEach-Object {
         $ProjectPath = $_.FullName
         $ProjectPath = (join-path $ProjectPath "Projects")
         If(!(test-path $ProjectPath))

@@ -26,16 +26,18 @@ Remove-Item .\vmdevadmin-main -Force -Recurse -Verbose
 #Download and Install Chocolately programs
 Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-choco.ps1 -OutFile .\install-choco.ps1; .\install-choco.ps1
 
-#Download and Unzip the vm setup file and run the script
-#Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/cloudhostedvm-main.zip -OutFile .\cloudhostedvm-main.zip
-#Expand-Archive .\cloudhostedvm-main.zip -DestinationPath .\ -Force -Verbose
-
-
-#Remove-Item .\cloudhostedvm-main -Force -Recurse -Verbose
+#Download scripts and execute them
+Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Folder_OnVM.ps1')
+Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Shortcuts_OnDesktop.ps1')
+Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Shortcuts_OnTaskbar.ps1')
+Invoke-Expression (new-object net.webclient).DownloadString('https://github.com/madsenkg/cgi/raw/main/DevBox_D365_Shortcuts_SetRunAsAdmin.ps1')
 
 # Remove the Zip file
-#Remove-Item .\*.zip -Force -Recurse -Verbose
+Remove-Item .\*.zip -Force -Recurse -Verbose
 
-# Remove this file
-#Remove-Item .\install.ps1 -Force -Recurse -Verbose
-#Remove-Item .\install-choco.ps1 -Force -Recurse -Verbose
+#Remove install files
+Remove-Item .\install.ps1 -Force -Recurse -Verbose
+Remove-Item .\install-choco.ps1 -Force -Recurse -Verbose
+
+#Set Administrator password never to expire
+Set-LocalUser -SID (([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value) -PasswordNeverExpires $true

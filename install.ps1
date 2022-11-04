@@ -1,5 +1,6 @@
 Clear-Host
 
+#Init
 $Script:ScriptDir = Split-Path -Parent $PSCommandPath;
 Set-Location $Script:ScriptDir;
 
@@ -16,22 +17,26 @@ if (Test-Path -Path $scriptFolder) {
     New-Item -Path $scriptFolder -ItemType "Directory" -Force -Verbose
 }
 
-#Download the Zip files
-
-#Unzip the The DevAdmin Files and copy the files to Script folder
-Get-ChildItem -Path .\
+#Download and Unzip the The DevAdmin Files and copy the files to Script folder
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/vmdevadmin-main.zip -OutFile .\vmdevadmin-main.zip
 Expand-Archive .\vmdevadmin-main.zip -DestinationPath .\ -Force -Verbose
 Copy-Item .\vmdevadmin-main\*.* -Destination $scriptFolder -Force -Verbose
 Remove-Item .\vmdevadmin-main -Force -Recurse -Verbose
 
+#Download and Install Chocolately programs
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-choco.ps1 -OutFile .\install-choco.ps1; .\install-choco.ps1
 
-#Unzip the vm setup file to the downlod folder
+#Download and Unzip the vm setup file and run the script
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/cloudhostedvm-main.zip -OutFile .\cloudhostedvm-main.zip
+Expand-Archive .\cloudhostedvm-main.zip -DestinationPath .\ -Force -Verbose
 
 
 
+Remove-Item .\cloudhostedvm-main -Force -Recurse -Verbose
 
 # Remove the Zip file
-
-
+Remove-Item .\*.zip -Force -Recurse -Verbose
 
 # Remove this file
+Remove-Item .\install.ps1 -Force -Recurse -Verbose
+Remove-Item .\install-choco.ps1 -Force -Recurse -Verbose

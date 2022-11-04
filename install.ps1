@@ -1,11 +1,7 @@
 Clear-Host
 
 #Init
-$Script:ScriptDir = Split-Path -Parent $PSCommandPath;
-Set-Location $Script:ScriptDir;
-
 $documentFolder = [Environment]::GetFolderPath("MyDocuments")
-#$downloadFolder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 $scriptFolder = join-path  $documentFolder "scripts"
 
 #Check if Script folder is in place
@@ -31,13 +27,15 @@ Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-desktop-
 Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-taskbar-shortcuts.ps1 -OutFile .\install-taskbar-shortcuts.ps1; .\install-taskbar-shortcuts.ps1
 Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-setrunasadmin-shortcuts.ps1 -OutFile .\install-setrunasadmin-shortcuts.ps1; .\install-setrunasadmin-shortcuts.ps1
 
-
 # Remove the Zip file
-Remove-Item .\*.zip -Force -Recurse -Verbose
+Remove-Item .\*.zip -Force -Recurse
 
 #Remove install files
-Remove-Item .\install.ps1 -Force -Recurse -Verbose
-Remove-Item .\install-choco.ps1 -Force -Recurse -Verbose
+Remove-Item .\install.ps1 -Force -Recurse
+Remove-Item .\install-choco.ps1 -Force -Recurse
 
 #Set Administrator password never to expire
 Set-LocalUser -SID (([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value) -PasswordNeverExpires $true
+
+Clear-Host
+Write-Output "Done..."

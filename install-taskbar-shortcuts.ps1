@@ -1,7 +1,6 @@
 ﻿#Requires -RunAsAdministrator
 #Source : https://stackoverflow.com/questions/59778951/pin-program-with-parameters-to-taskbar-using-ps-in-windows-10
 Clear-Host;
-
 Function New-PinnedItem {
     [CmdletBinding()]
     param (
@@ -86,7 +85,7 @@ Function New-PinnedItem {
         $Name = [System.IO.Path]::GetFileNameWithoutExtension($Path)
     }
 
-    $TempFolderName = "tmp$((48..57 + 97..122| get-random -Count 4 |% {[char][byte]$_}) -join '')"
+    $TempFolderName = "tmp$((48..57 + 97..122| get-random -Count 4 |ForEach-Object {[char][byte]$_}) -join '')"
     $TempFolderPath = "$env:temp\$TempFolderName"
     $ShortcutPath = "$TempFolderPath\$Name.lnk"
     [Void](New-Item -ItemType Directory -Path $TempfolderPath)

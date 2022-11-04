@@ -41,12 +41,8 @@ Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-setrunas
 Set-LocalUser -SID (([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value) -PasswordNeverExpires $true
 
 #Cleaning up
-# Remove the Zip files
-Remove-Item .\*.zip -Force -Recurse
-
 #Remove install files
-#Get-ChildItem .\install.ps1 -Recurse
-#Remove-Item .\install*.ps1 -Force -Recurse
+Remove-Item .\install*.ps1 -Force -Confirm:$false 
 
 #Clear-Host
 Write-Output "Done..."

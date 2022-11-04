@@ -1,5 +1,5 @@
 ﻿#Requires -RunAsAdministrator
-cls;
+Clear-Host;
 
 $TargetPath = (join-path $env:USERPROFILE “Desktop")
 $SourcePath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"

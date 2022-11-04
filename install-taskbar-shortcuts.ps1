@@ -1,6 +1,6 @@
 ﻿#Requires -RunAsAdministrator
 #Source : https://stackoverflow.com/questions/59778951/pin-program-with-parameters-to-taskbar-using-ps-in-windows-10
-cls;
+Clear-Host;
 
 Function New-PinnedItem {
     [CmdletBinding()]
@@ -49,8 +49,8 @@ Function New-PinnedItem {
         $loc = Get-ChildItem HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall
         $names = ($loc | foreach-object { Get-ItemProperty $_.PsPath }).Where( { ![String]::IsNullOrWhiteSpace($_.InstallLocation) })
         $InstallLocations1, $InstallLocations2 = $names.Where( { $_.DisplayName -Like "*$ShortName*" }, 'split') 
-        $InstallLocations1 = $InstallLocations1 | Select -ExpandProperty InstallLocation
-        $InstallLocations2 = $InstallLocations2 | Select -ExpandProperty InstallLocation
+        $InstallLocations1 = $InstallLocations1 | Select-Object -ExpandProperty InstallLocation
+        $InstallLocations2 = $InstallLocations2 | Select-Object -ExpandProperty InstallLocation
         Foreach ($InsLoc in $InstallLocations1) {
             if (Test-Path -Path "$Insloc\$path") {
                 $Path = "$Insloc\$path"

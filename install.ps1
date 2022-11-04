@@ -1,5 +1,5 @@
 #Requires -RunAsAdministrator
-Clear-Host
+#Clear-Host
 
 #Init
 $documentFolder = [Environment]::GetFolderPath("MyDocuments")
@@ -33,15 +33,17 @@ Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-taskbar-
 #Download script to alter shortcuts to RunAsAdmin
 Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/install-setrunasadmin-shortcuts.ps1 -OutFile .\install-setrunasadmin-shortcuts.ps1; .\install-setrunasadmin-shortcuts.ps1
 
+#Set Administrator password never to expire
+Set-LocalUser -SID (([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value) -PasswordNeverExpires $true
+
+#Cleaning up
+
 # Remove the Zip files
 Remove-Item .\*.zip -Force -Recurse
 
 #Remove install files
-Remove-Item .\install.ps1 -Force -Recurse
-Remove-Item .\install-choco.ps1 -Force -Recurse
-
-#Set Administrator password never to expire
-Set-LocalUser -SID (([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value) -PasswordNeverExpires $true
+Get-ChildItem .\install*.ps1 -Recurse
+Remove-Item .\install*.ps1 -Force -Recurse
 
 #Clear-Host
 Write-Output "Done..."

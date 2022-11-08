@@ -1,6 +1,8 @@
-﻿#Requires -RunAsAdministrator
+#Requires -RunAsAdministrator
 
-#Clear-Host;
+#Start log
+Start-Transcript -Append -Path (join-path $env:TEMP ("cgiscripts\{0}_{1}.log" -f $env:COMPUTERNAME,(Get-Date -format yyyyMMdd))) 
+
 #Script version
 $Script:Version = '1.0.1';
 
@@ -24,3 +26,4 @@ catch {
     exit
 }
 
+Stop-Transacript

@@ -1,6 +1,9 @@
-﻿#Requires -RunAsAdministrator
+#Requires -RunAsAdministrator
 #Source : https://stackoverflow.com/questions/59778951/pin-program-with-parameters-to-taskbar-using-ps-in-windows-10
-#Clear-Host;
+
+#Start log
+Start-Transcript -Append -Path (join-path $env:TEMP ("cgiscripts\{0}_{1}.log" -f $env:COMPUTERNAME,(Get-Date -format yyyyMMdd))) 
+
 Function New-PinnedItem {
     [CmdletBinding()]
     param (
@@ -146,4 +149,5 @@ if (Test-path -Path (join-path $SourcePath.'Common Programs' "Visual Studio 2019
 }
 
 New-PinnedItem -Path (join-path $SourcePath.'Common Programs' "Microsoft SQL Server Tools 18\Microsoft SQL Server Management Studio 18.lnk") -Name "Microsoft SQL Server Management Studio 18" -RunAsAdmin
-  
+
+Stop-Transcript

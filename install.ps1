@@ -5,6 +5,9 @@
 #Clear-Host
 Set-Location $env:TEMP
 
+#Start log
+Start-Transcript -Append -Path (join-path $env:TEMP ("cgiscripts\{0}_{1}.log" -f $env:COMPUTERNAME,(Get-Date -format yyyyMMdd))) 
+
 #Init
 $documentFolder = [Environment]::GetFolderPath("MyDocuments")
 $scriptFolder = join-path  $documentFolder "scripts"
@@ -46,3 +49,5 @@ Remove-Item .\install*.ps1 -Force -Confirm:$false
 
 #Clear-Host
 Write-Output "Done..."
+
+Stop-Transcript

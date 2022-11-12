@@ -47,7 +47,7 @@ Set-LocalUser -SID (([System.Security.Principal.WindowsIdentity]::GetCurrent()).
 #Remove install files
 Remove-Item .\install*.ps1 -Force -Confirm:$false 
 
+Stop-Transcript
+
 #Clear-Host
 Write-Output "Done..."
-
-Stop-Transcript

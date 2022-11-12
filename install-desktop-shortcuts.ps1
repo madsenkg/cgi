@@ -19,12 +19,12 @@ Copy-Item (join-path $SourcePath "Administrative Tools\Event Viewer.lnk") $Targe
 
 #Create Shortcut link to Dynamics LCS
 $Shortcut  = $WshShell.CreateShortcut($env:USERPROFILE + “\Desktop\LCS.url”)
-$Shortcut.TargetPath = “https://lcs.dynamics.com/v2"
+$Shortcut.TargetPath = "https://lcs.dynamics.com/v2"
 $Shortcut.Save()
 
 #Create ShortCut link to Azure Portal
 $Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + “\Desktop\Azure portal.url”)
-$Shortcut.TargetPath = “https://portal.azure.com"
+$Shortcut.TargetPath = "https://portal.azure.com"
 $Shortcut.Save()
 
 #Create ShortCut to CGI D365 Scripts

@@ -48,4 +48,4 @@ $bytes[0x15] = $bytes[0x15] -bor 0x20 #set byte 21 (0x15) bit 6 (0x20) ON
 
 #Source: https://stackoverflow.com/questions/50057555/create-shortcut-to-run-with-powershell-with-powershell
 
-Stop-Transacript
+Stop-Transcript

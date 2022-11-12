@@ -26,4 +26,4 @@ catch {
     exit
 }
 
-Stop-Transacript
+Stop-Transcript

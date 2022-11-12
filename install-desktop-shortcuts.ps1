@@ -2,7 +2,7 @@
 #Start log
 Start-Transcript -Append -Path (join-path $env:TEMP ("cgiscripts\{0}_{1}.log" -f $env:COMPUTERNAME,(Get-Date -format yyyyMMdd))) 
 
-$TargetPath = (join-path $env:USERPROFILE “Desktop")
+$TargetPath = (join-path $env:USERPROFILE "Desktop")
 $SourcePath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"
 
 $Script:ScriptDir = Split-Path -Parent $PSCommandPath;
@@ -18,22 +18,22 @@ Copy-Item (join-path $SourcePath "System Tools\Task Manager.lnk") $TargetPath
 Copy-Item (join-path $SourcePath "Administrative Tools\Event Viewer.lnk") $TargetPath
 
 #Create Shortcut link to Dynamics LCS
-$Shortcut  = $WshShell.CreateShortcut($env:USERPROFILE + “\Desktop\LCS.url”)
+$Shortcut  = $WshShell.CreateShortcut($env:USERPROFILE + "\Desktop\LCS.url")
 $Shortcut.TargetPath = "https://lcs.dynamics.com/v2"
 $Shortcut.Save()
 
 #Create ShortCut link to Azure Portal
-$Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + “\Desktop\Azure portal.url”)
+$Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + "\Desktop\Azure portal.url")
 $Shortcut.TargetPath = "https://portal.azure.com"
 $Shortcut.Save()
 
 #Create ShortCut to CGI D365 Scripts
-$Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + “\Desktop\CGI Scripts.lnk”)
+$Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + "\Desktop\CGI Scripts.lnk")
 $Shortcut.TargetPath   = $env:USERPROFILE + "\documents\scripts"
 $Shortcut.Save()
 
 #Create ShortCut to D365 Developer Menu
-$Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + “\Desktop\D365 Developer Admin Menu.lnk”) 
+$Shortcut = $WshShell.CreateShortcut($env:USERPROFILE + "\Desktop\D365 Developer Admin Menu.lnk") 
 $Shortcut.TargetPath = ("{0}\system32\WindowsPowerShell\v1.0\powershell.exe" -f $env:SystemRoot)
 $Shortcut.WorkingDirectory = $env:USERPROFILE + "\documents\scripts"
 $Shortcut.Arguments = "-noexit -command & ""$env:USERPROFILE\Documents\Scripts\D356fo_Developer_Administration.ps1"""

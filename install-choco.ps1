@@ -13,5 +13,6 @@ choco install vscode -y -v
 choco install notepadplusplus -y -v 
 choco install windirstat -y -v
 choco install postman -y -v
+choco install winmerge -y -v
 
 Stop-Transcript

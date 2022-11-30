@@ -2,7 +2,7 @@
 #Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; invoke-expression((New-Object System.Net.WebClient).DownloadString('https://github.com/madsenkg/cgi/raw/main/install.ps1'))
 
 #Requires -RunAsAdministrator
-#Clear-Host
+Clear-Host
 Set-Location $env:TEMP
 
 #Start log
@@ -23,10 +23,10 @@ if (Test-Path -Path $scriptFolder) {
 }
 
 #Download and Unzip the The DevAdmin Files and copy the files to Script folder
-Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/vmdevadmin-main.zip -OutFile .\vmdevadmin-main.zip
-Expand-Archive .\vmdevadmin-main.zip -DestinationPath .\ -Force 
-Copy-Item .\vmdevadmin-main\*.* -Destination $scriptFolder -Force
-Remove-Item .\vmdevadmin-main -Force -Recurse
+Invoke-WebRequest -Uri https://github.com/madsenkg/cgi/raw/main/cgidevadmin-main.zip -OutFile .\cgidevadmin-main.zip
+Expand-Archive .\cgidevadmin-main.zip -DestinationPath .\ -Force 
+Copy-Item .\cgidevadmin-main\*.* -Destination $scriptFolder -Force
+Remove-Item .\cgidevadmin-main -Force -Recurse
 
 #Download scripts and execute them
 #Download and Install Chocolately programs
